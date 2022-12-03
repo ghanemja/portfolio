@@ -1,7 +1,7 @@
 {
-    "extends": "next/core-web-vitals",
-     "rules": {
-      "react/no-unknown-property": "warn",
-      "strict": "off"
+    "extends": ["plugin:react/recommended"],
+    "rules": {
+        "react/no-unknown-property": "warn",
+        "strict": "off"
     }
-  }
+}
