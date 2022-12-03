@@ -1,4 +1,4 @@
-import * as THREE from "three";
+// import * as THREE from "three";
 import Experience from "../Experience";
 import SpaceLab from "./SpaceLab";
 import Environment from "./Environment";
