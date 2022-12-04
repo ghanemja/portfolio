@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import Experience from "./components/Experience/Experience";
-import starsVideo from "./components/utils/videos/purple-star.mp4"
+import starsVideo from "./components/utils/videos/stars.mp4"
 
 function App() {
   useEffect(() => {
