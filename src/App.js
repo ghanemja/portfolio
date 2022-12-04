@@ -10,7 +10,7 @@ function App() {
 
   const videoRef= useRef();
   const setPlayBack = () => {
-    videoRef.current.playbackRate = 0.8;
+    videoRef.current.playbackRate = 1.2;
   };
 
   return (
@@ -20,7 +20,7 @@ function App() {
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 
         autoPlay muted loop id="videoBackground"
-        
+
       >
           <source src={starsVideo} type="video/mp4"/>
       </video>
