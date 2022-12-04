@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      <div class="wrapper">
+      <div className="wrapper">
       <video 
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 
