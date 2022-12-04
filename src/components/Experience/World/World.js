@@ -2,6 +2,7 @@
 import Experience from "../Experience";
 import SpaceLab from "./SpaceLab";
 import Environment from "./Environment";
+import Background from "./Background";
 import { EventEmitter } from "events";
 
 export default class World extends EventEmitter {
@@ -20,6 +21,7 @@ export default class World extends EventEmitter {
 
     this.resources.on("ready", () => {
         this.environment = new Environment();
+        this.background = new Background();
       this.spacelab = new SpaceLab();
       this.spacelabcontents = this.spacelab.scene;
       this.emit("worldready");
