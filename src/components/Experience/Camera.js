@@ -31,12 +31,12 @@ export default class Camera {
       this.sizes.frustrum / 2,
       -this.sizes.frustrum / 2,
       -100,
-      100
+      1000
     );
     this.orthographicCamera.position.copy(initialCameraPosition);
     this.orthographicCamera.lookAt(target);
     this.scene.add(this.orthographicCamera);
-    console.log(this.orthographicCamera);
+    // console.log(this.orthographicCamera);
   }
 
   // look side to side on object 

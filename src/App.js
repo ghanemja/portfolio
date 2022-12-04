@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useEffect } from "react";
 import Experience from "./components/Experience/Experience";
+import starsVideo from "./components/utils/videos/stars.mp4"
 
 function App() {
   useEffect(() => {
@@ -9,6 +10,9 @@ function App() {
 
   return (
     <div className="App">
+      <video autoPlay muted loop id="videoBackground">
+        <source src={starsVideo} type="video/mp4"/>
+      </video>
       <div className="experience">
         <canvas className="experience-canvas" />
       </div>
