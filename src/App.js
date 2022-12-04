@@ -1,18 +1,30 @@
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Experience from "./components/Experience/Experience";
-import starsVideo from "./components/utils/videos/stars.mp4"
+import starsVideo from "./components/utils/videos/file.mp4"
 
 function App() {
   useEffect(() => {
     const experience = new Experience(document.querySelector(".experience-canvas"));
   });
 
+  const videoRef= useRef();
+  const setPlayBack = () => {
+    videoRef.current.playbackRate = 1.2;
+  };
+
   return (
     <div className="App">
-      <video autoPlay muted loop id="videoBackground">
-        <source src={starsVideo} type="video/mp4"/>
+      <div class="wrapper">
+      <video 
+        ref={videoRef} 
+        onCanPlay={() => setPlayBack()} 
+        autoPlay muted loop id="videoBackground"
+
+      >
+          <source src={starsVideo} type="video/mp4"/>
       </video>
+      </div>
       <div className="experience">
         <canvas className="experience-canvas" />
       </div>
