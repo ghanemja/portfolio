@@ -14,7 +14,7 @@ export default class Environment {
     const color = new THREE.Color("#ffffff");
     // rgb(255, 255, 255)
 
-    const intensity = 25;
+    const intensity = 10;
     this.sunLight = new THREE.DirectionalLight(color, intensity);
     this.sunLight.position.set(20, 50, 0);
     this.sunLight.castShadow = true;
