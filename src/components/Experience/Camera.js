@@ -15,8 +15,8 @@ export default class Camera {
   createOrthographicCamera() {
     const initialCameraPosition = new THREE.Vector3(
         24 * Math.sin(0.2 * Math.PI),
-        10,
-        22 * Math.cos(0.2 * Math.PI)
+        15,
+        50 * Math.cos(0.2 * Math.PI)
       );
     // focus point of the camera 
     const target = new THREE.Vector3(0, 0, 0);
@@ -30,11 +30,12 @@ export default class Camera {
       (this.sizes.aspect * this.sizes.frustrum) / 2,
       this.sizes.frustrum / 2,
       -this.sizes.frustrum / 2,
-      -100,
+      -200,
       1000
     );
     this.orthographicCamera.position.copy(initialCameraPosition);
     this.orthographicCamera.lookAt(target);
+    // this.helper = new THREE.CameraHelper(this.orthographicCamera);
     this.scene.add(this.orthographicCamera);
     // console.log(this.orthographicCamera);
   }
@@ -45,8 +46,11 @@ export default class Camera {
   setOrbitControls() {
     this.controls = new OrbitControls(this.orthographicCamera, this.canvas);
     this.controls.enableRotate = true;
-    this.controls.enableDamping = true;
+    this.controls.enableDamping = false;
     this.controls.enableZoom = true;
+    this.controls.autoRotate = true;
+    this.controls.enablePan = false;
+    this.controls.autoRotateSpeed = 0.5;
   }
 
   resize() {

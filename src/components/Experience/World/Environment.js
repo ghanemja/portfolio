@@ -11,20 +11,25 @@ export default class Environment {
 
   setSunlight() {
     // const color = new THREE.Color("rgb(44, 59, 175)");
-    const color = new THREE.Color("rgb(255, 255, 255)");
+    const color = new THREE.Color("#ffffff");
+    // rgb(255, 255, 255)
 
-    const intensity = 3.5;
+    const intensity = 25;
     this.sunLight = new THREE.DirectionalLight(color, intensity);
-    this.sunLight.position.set(20, 500, 0);
+    this.sunLight.position.set(20, 50, 0);
     this.sunLight.castShadow = true;
     this.sunLight.shadow.camera.near = 0;
-    this.sunLight.shadow.camera.far = 1400;
-    this.sunLight.shadow.camera.left = -750;
-    this.sunLight.shadow.camera.right = 500;
-    this.sunLight.shadow.camera.top = 500;
-    this.sunLight.shadow.camera.bottom = -500;
-    this.sunLight.shadow.bias = -0.005;
+    this.sunLight.shadow.camera.far = 100;
+    this.sunLight.shadow.camera.left = -20;
+    this.sunLight.shadow.camera.right = 20;
+    this.sunLight.shadow.camera.top = 20;
+    this.sunLight.shadow.camera.bottom = -20;
+    // this.sunLight.shadow.normalBias = -0.05;
     this.sunLight.shadow.mapSize.set(2048, 2048);
+    this.sunLightHelper = new THREE.DirectionalLightHelper(this.sunLight);
+    this.helper = new THREE.CameraHelper(this.sunLight.shadow.camera);
+
+    // this.scene.add(this.sunLightHelper, this.helper);
     //front facing sunlight
    
     //back facing sunlight
@@ -52,9 +57,9 @@ export default class Environment {
     // this.scene.add( sphere3 ); //displays this another sphere
     // sphere3.position.set(0, 0, 250); //positions this Sun on 3D point (X = 0, y = 0, z = 250)
 
-    const light = new THREE.PointLight( 0xffffff , 1, 1000, 2 ); //Creates white light with intensity of 1, range of light is 1000 units and pphysically correct lighting is activated when using 2
-    light.position.set( 0, 0, 250 ); //positions this Light on 3D point (X = 0, y = 0, z = 250)
-    this.scene.add( light ); //displays this light
+    // const light = new THREE.PointLight( 0xffffff , 1, 1000, 2 ); //Creates white light with intensity of 1, range of light is 1000 units and pphysically correct lighting is activated when using 2
+    // light.position.set( 0, 0, 250 ); //positions this Light on 3D point (X = 0, y = 0, z = 250)
+    // this.scene.add( light ); //displays this light
 
 
 
