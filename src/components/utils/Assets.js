@@ -1,3 +1,3 @@
 export default [
-  { name: "lab", type: "glbModel", path: "/models/spaceStation4.glb" },
+  { name: "lab", type: "glbModel", path: "/models/spaceStation-17.glb" },
 ]
