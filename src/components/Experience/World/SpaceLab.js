@@ -33,7 +33,7 @@ export default class SpaceLab extends EventEmitter {
     });
     // this.ambientLight = new THREE.AmbientLight(0xffffff, 2);
     // this.scene.add(this.ambientLight);
-    this.labscene.scale.set(.35,.35,.35);
+    this.labscene.scale.set(.15,.15,.15);
     this.labscene.position.set(0,10,0);
     this.scene.add(this.labscene)
     // console.log(this.labscene)
