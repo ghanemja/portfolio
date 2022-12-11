@@ -49,7 +49,7 @@ export default class Camera {
     this.controls.enableDamping = false;
     this.controls.enableZoom = true;
     this.controls.autoRotate = true;
-    this.controls.enablePan = false;
+    this.controls.enablePan = true;
     this.controls.autoRotateSpeed = 0.5;
   }
 
