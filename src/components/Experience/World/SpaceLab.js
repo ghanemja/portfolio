@@ -3,6 +3,7 @@ import Experience from "../Experience";
 import { EventEmitter } from "events";
 
 export default class SpaceLab extends EventEmitter {
+  
   constructor() {
     super();
 
@@ -14,40 +15,104 @@ export default class SpaceLab extends EventEmitter {
     this.lab = this.resources.items.lab;
     this.labscene = this.lab.scene;
     this.camera = this.experience.camera.orthographicCamera;
+    this.camera2 = this.experience.camera.perspectiveCamera;
     this.canvas = this.experience.canvas;
+    this.width = this.experience.sizes.width;
+    this.height = this.experience.sizes.height;
     this.sizes = this.experience.sizes;
     this.controls = this.experience.controls;
     //imports
-    this.spaceKids = {};
+    this.spacechilds = {};
     this.setModel();
+    this.setRobot();
     this.setAnimations();
     this.onMouseDown();
     //functions
   }
 
   setModel() {
-    this.labscene.children.forEach(kid => {
-        kid.castShadow = true;
-        kid.receiveShadow = true;
-        this.spaceKids[kid.name.toLowerCase()] = kid;
+    this.labscene.children.forEach(child => {
+      //   if (child instanceof THREE.Group) {
+      //   child.children.forEach((groupchild) => {
+      //     groupchild.castShadow = true;
+      //     groupchild.receiveShadow = true;
+      //   });
+      // }
+        this.spacechilds[child.name.toLowerCase()] = child;
+        if(child.name.toLowerCase() === "navrobot"){
+          console.log('here robot')
+          this.robot = child;
+          
+        }
+        if(child.name.toLowerCase() === "about"){
+          this.aboutButton = child;
+          
+        }
+        if(child.name.toLowerCase() === "research"){
+          this.researchButton = child;
+          
+        }
+        if(child.name.toLowerCase() === "industry"){
+          this.industryButton = child;
+          
+        }
+        if(child.name.toLowerCase() === "volunteering"){
+          this.volunteeringButton = child;
+          
+        }
+        if(child.name.toLowerCase() === "contact"){
+          this.contactButton = child;
+          
+        }
     });
-    // this.ambientLight = new THREE.AmbientLight(0xffffff, 2);
-    // this.scene.add(this.ambientLight);
-    this.labscene.scale.set(.15,.15,.15);
+    this.setNavButtons();
+    this.labscene.scale.set(.12,.12,.12);
     this.labscene.position.set(0,10,0);
     this.scene.add(this.labscene)
     // console.log(this.labscene)
-    // console.log(this.spaceKids)
-
+    // console.log(this.spacechilds)
   }
+
   setAnimations(){
     this.mixer = new THREE.AnimationMixer(this.labscene);
-    //  console.log(this.lab.animations)
-     this.float = this.mixer.clipAction(this.lab.animations[1]);
-     this.spin = this.mixer.clipAction(this.lab.animations[0]);
-      //assigning variables to the animations to be played
-     this.float.play();
-      //play animations
+     console.log(this.lab.animations)
+  }
+
+  setRobot() {
+    this.camera2.add(this.robot);
+    this.robot.position.set(this.canvas.width / 2 , this.canvas.height / 2)
+    // console.log(this.canvas.height)
+    // console.log(this.canvas.width)
+    // this.robot.position.set(this.canvas.width / 2, this.canvas.height / 2)
+    
+  }
+
+  setNavButtons() {
+    this.camera.add(this.aboutButton);
+    this.camera.add(this.researchButton);
+    this.camera.add(this.industryButton);
+    this.camera.add(this.volunteeringButton);
+    this.camera.add(this.contactButton);
+
+    this.aboutButton.scale.set(10,15,17.5);
+    this.aboutButton.position.set(17.5,7.5,20);
+    this.aboutButton.rotation.set(0,89.1,0);
+
+    this.researchButton.scale.set(10,15,17.5);
+    this.researchButton.position.set(17.5,7.5,20);
+    this.researchButton.rotation.set(0,89.1,0);
+
+    this.industryButton.scale.set(10,15,17.5);
+    this.industryButton.position.set(17.5,7.5,20);
+    this.industryButton.rotation.set(0,89.1,0);
+
+    this.volunteeringButton.scale.set(10,15,17.5);
+    this.volunteeringButton.position.set(17.5,7.5,20);
+    this.volunteeringButton.rotation.set(0,89.1,0);
+
+    this.contactButton.scale.set(10,15,17.5);
+    this.contactButton.position.set(17.5,7.5,20);
+    this.contactButton.rotation.set(0,89.1,0);
   }
 
   initializeRaycaster(e) {
@@ -65,7 +130,7 @@ export default class SpaceLab extends EventEmitter {
     this.intersects = this.raycaster.intersectObjects(objects, true);
     if (this.intersects.length) {
       console.log(this.intersects);
-      this.float.stop();
+      // this.float.stop();
     }
 
    }
