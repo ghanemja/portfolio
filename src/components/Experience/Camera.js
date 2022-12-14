@@ -11,36 +11,14 @@ export default class Camera {
     this.canvas = this.experience.canvas;
     this.initialCameraPosition = new THREE.Vector3(
       24 * Math.sin(0.2 * Math.PI),
-      15,
+      10,
       50 * Math.cos(0.2 * Math.PI)
       );
       // focus point of the camera 
-       this.target = new THREE.Vector3(0, 0, 0);
+       this.target = new THREE.Vector3(0,0, 0);
 
       this.createOrthographicCamera();
-      this.createPerspectiveCamera();
       this.setOrbitControls();
-  }
-
-  createPerspectiveCamera() {
-  // takes aspect ratio and multiplies 
-  // by the distance from the camera that you can see
-  // based on position of camera & size
-  // tells you what distance you see back and forward
-  this.perspectiveCamera = new THREE.PerspectiveCamera(
-    (-this.sizes.aspect * this.sizes.frustrum) / 2,
-    (this.sizes.aspect * this.sizes.frustrum) / 2,
-    this.sizes.frustrum / 2,
-    -this.sizes.frustrum / 2,
-    -200,
-    10000
-  );
-  this.perspectiveCamera.position.copy(this.initialCameraPosition);
-  this.perspectiveCamera.lookAt(this.target);
-  // this.helper = new THREE.CameraHelper(this.orthographicCamera);
-  this.scene.add(this.perspectiveCamera);
-  // console.log(this.orthographicCamera);
-    
   }
 
   createOrthographicCamera() {
@@ -71,8 +49,10 @@ export default class Camera {
     this.controls.enableRotate = true;
     this.controls.enableDamping = false;
     this.controls.enableZoom = true;
-    this.controls.autoRotate = false;
+    this.controls.autoRotate = true;
     this.controls.enablePan = true;
+    this.controls.maxZoom = 1.5;
+    this.controls.minZoom = .75;
     this.controls.autoRotateSpeed = 0.5;
   }
 

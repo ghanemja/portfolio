@@ -15,7 +15,6 @@ export default class SpaceLab extends EventEmitter {
     this.lab = this.resources.items.lab;
     this.labscene = this.lab.scene;
     this.camera = this.experience.camera.orthographicCamera;
-    this.camera2 = this.experience.camera.perspectiveCamera;
     this.canvas = this.experience.canvas;
     this.width = this.experience.sizes.width;
     this.height = this.experience.sizes.height;
@@ -24,7 +23,6 @@ export default class SpaceLab extends EventEmitter {
     //imports
     this.spacechilds = {};
     this.setModel();
-    this.setRobot();
     this.setAnimations();
     this.onMouseDown();
     //functions
@@ -39,33 +37,9 @@ export default class SpaceLab extends EventEmitter {
       //   });
       // }
         this.spacechilds[child.name.toLowerCase()] = child;
-        if(child.name.toLowerCase() === "navrobot"){
-          console.log('here robot')
-          this.robot = child;
-          
-        }
-        if(child.name.toLowerCase() === "about"){
-          this.aboutButton = child;
-          
-        }
-        if(child.name.toLowerCase() === "research"){
-          this.researchButton = child;
-          
-        }
-        if(child.name.toLowerCase() === "industry"){
-          this.industryButton = child;
-          
-        }
-        if(child.name.toLowerCase() === "volunteering"){
-          this.volunteeringButton = child;
-          
-        }
-        if(child.name.toLowerCase() === "contact"){
-          this.contactButton = child;
-          
-        }
+
+        
     });
-    this.setNavButtons();
     this.labscene.scale.set(.12,.12,.12);
     this.labscene.position.set(0,10,0);
     this.scene.add(this.labscene)
@@ -76,43 +50,6 @@ export default class SpaceLab extends EventEmitter {
   setAnimations(){
     this.mixer = new THREE.AnimationMixer(this.labscene);
      console.log(this.lab.animations)
-  }
-
-  setRobot() {
-    this.camera2.add(this.robot);
-    this.robot.position.set(this.canvas.width / 2 , this.canvas.height / 2)
-    // console.log(this.canvas.height)
-    // console.log(this.canvas.width)
-    // this.robot.position.set(this.canvas.width / 2, this.canvas.height / 2)
-    
-  }
-
-  setNavButtons() {
-    this.camera.add(this.aboutButton);
-    this.camera.add(this.researchButton);
-    this.camera.add(this.industryButton);
-    this.camera.add(this.volunteeringButton);
-    this.camera.add(this.contactButton);
-
-    this.aboutButton.scale.set(10,15,17.5);
-    this.aboutButton.position.set(17.5,7.5,20);
-    this.aboutButton.rotation.set(0,89.1,0);
-
-    this.researchButton.scale.set(10,15,17.5);
-    this.researchButton.position.set(17.5,7.5,20);
-    this.researchButton.rotation.set(0,89.1,0);
-
-    this.industryButton.scale.set(10,15,17.5);
-    this.industryButton.position.set(17.5,7.5,20);
-    this.industryButton.rotation.set(0,89.1,0);
-
-    this.volunteeringButton.scale.set(10,15,17.5);
-    this.volunteeringButton.position.set(17.5,7.5,20);
-    this.volunteeringButton.rotation.set(0,89.1,0);
-
-    this.contactButton.scale.set(10,15,17.5);
-    this.contactButton.position.set(17.5,7.5,20);
-    this.contactButton.rotation.set(0,89.1,0);
   }
 
   initializeRaycaster(e) {
@@ -140,7 +77,8 @@ export default class SpaceLab extends EventEmitter {
 
    }
 
-  resize() {}
+  resize() {
+  }
 
   update() {
 
