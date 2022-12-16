@@ -37,13 +37,13 @@
 }
 
 .header {
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
   opacity: 90%;
   margin-bottom: auto;
   text-align: center;
   background: #1abc9c;
   color: white;
-  font-size: 0.7rem;
+  font-size: 2rem;
   z-index: 999
 }
