@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useRef } from "react";
 import Experience from "./components/Experience/Experience";
 import RobotScene from "./components/NavRobot/Robot.js";
+import starsVideo from "./components/utils/videos/file.mp4"
 
 function App() {
   useEffect(() => {
@@ -15,17 +16,20 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div className="wrapper"> */}
+      <div class="header">
+        <h1>Under Construction. Feel free to look around, but come back soon to see updates!</h1>
+      </div>
+      <div className="wrapper">
         <RobotScene/>
-      {/* <video 
+      <video 
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 
         autoPlay muted loop id="videoBackground"
 
       >
           <source src={starsVideo} type="video/mp4"/>
-      </video> */}
-      {/* </div> */}
+      </video>
+      </div>
       <div className="experience">
         <canvas className="experience-canvas" />
       </div>

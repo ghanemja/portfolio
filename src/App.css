@@ -35,3 +35,15 @@
   justify-content: center;
   text-align: center;
 }
+
+.header {
+  padding: 1rem;
+  width: 100%;
+  opacity: 90%;
+  margin-bottom: auto;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 0.7rem;
+  z-index: 999
+}
