@@ -3,6 +3,7 @@ import Experience from "../Experience";
 import { EventEmitter } from "events";
 
 export default class SpaceLab extends EventEmitter {
+  
   constructor() {
     super();
 
@@ -15,10 +16,12 @@ export default class SpaceLab extends EventEmitter {
     this.labscene = this.lab.scene;
     this.camera = this.experience.camera.orthographicCamera;
     this.canvas = this.experience.canvas;
+    this.width = this.experience.sizes.width;
+    this.height = this.experience.sizes.height;
     this.sizes = this.experience.sizes;
     this.controls = this.experience.controls;
     //imports
-    this.spaceKids = {};
+    this.spacechilds = {};
     this.setModel();
     this.setAnimations();
     this.onMouseDown();
@@ -26,28 +29,27 @@ export default class SpaceLab extends EventEmitter {
   }
 
   setModel() {
-    this.labscene.children.forEach(kid => {
-        kid.castShadow = true;
-        kid.receiveShadow = true;
-        this.spaceKids[kid.name.toLowerCase()] = kid;
+    this.labscene.children.forEach(child => {
+      //   if (child instanceof THREE.Group) {
+      //   child.children.forEach((groupchild) => {
+      //     groupchild.castShadow = true;
+      //     groupchild.receiveShadow = true;
+      //   });
+      // }
+        this.spacechilds[child.name.toLowerCase()] = child;
+
+        
     });
-    // this.ambientLight = new THREE.AmbientLight(0xffffff, 2);
-    // this.scene.add(this.ambientLight);
-    this.labscene.scale.set(.15,.15,.15);
+    this.labscene.scale.set(.12,.12,.12);
     this.labscene.position.set(0,10,0);
     this.scene.add(this.labscene)
     // console.log(this.labscene)
-    // console.log(this.spaceKids)
-
+    // console.log(this.spacechilds)
   }
+
   setAnimations(){
     this.mixer = new THREE.AnimationMixer(this.labscene);
-    //  console.log(this.lab.animations)
-     this.float = this.mixer.clipAction(this.lab.animations[1]);
-     this.spin = this.mixer.clipAction(this.lab.animations[0]);
-      //assigning variables to the animations to be played
-     this.float.play();
-      //play animations
+     console.log(this.lab.animations)
   }
 
   initializeRaycaster(e) {
@@ -65,7 +67,7 @@ export default class SpaceLab extends EventEmitter {
     this.intersects = this.raycaster.intersectObjects(objects, true);
     if (this.intersects.length) {
       console.log(this.intersects);
-      this.float.stop();
+      // this.float.stop();
     }
 
    }
@@ -75,7 +77,8 @@ export default class SpaceLab extends EventEmitter {
 
    }
 
-  resize() {}
+  resize() {
+  }
 
   update() {
 

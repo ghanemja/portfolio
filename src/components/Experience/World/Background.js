@@ -6,35 +6,25 @@ export default class Background {
         this.experience = new Experience();
         this.scene = this.experience.scene;
         this.setBackground();
-
-
     }
 
     setBackground() {
-        // const material = new THREE.PointsMaterial({
-        //     size: 0.05,
-        // })
-        // const getRandomParticlePos = (particleCount) => {
-        //     const arr = new Float32Array(particleCount * 3);
-        //     for (let i = 0; i < particleCount; i++) {
-        //       arr[i] = (Math.random() - 0.5) * 100;
-        //       console.log(arr[i])
-        //     }
-        //     return arr;
-        //   };
-        // const geometry = new THREE.BufferGeometry();
-        // console.log(geometry)
-
-        // geometry.setAttribute("position", new THREE.BufferAttribute(getRandomParticlePos(350),3) );
-        // const background = new THREE.Mesh(geometry, material);
-
-
-        //   this.scene.add(background);
-
-
-        
-
-
+        const starGeometry = new THREE.BufferGeometry();
+        const starMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+        })
+        const starPositions = []
+        for(let i = 0; i < 100000; i++) {
+            const x = (Math.random() - 0.5) * 2000
+            const y = (Math.random() - 0.5) * 2000
+            const z = -Math.random() * 1000
+            starPositions.push(x,y,z)
+        }
+        starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starPositions, 3))
+        const stars = new THREE.Points(
+            starGeometry, starMaterial
+        )
+        this.scene.add(stars)
     }
 
     resize() {

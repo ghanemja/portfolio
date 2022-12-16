@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Experience from "./Experience";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { ThemeProvider } from "@mui/system";
 
 export default class Camera {
   constructor() {
@@ -8,19 +9,19 @@ export default class Camera {
     this.sizes = this.experience.sizes;
     this.scene = this.experience.scene;
     this.canvas = this.experience.canvas;
-    this.createOrthographicCamera();
-    this.setOrbitControls();
+    this.initialCameraPosition = new THREE.Vector3(
+      24 * Math.sin(0.2 * Math.PI),
+      10,
+      50 * Math.cos(0.2 * Math.PI)
+      );
+      // focus point of the camera 
+       this.target = new THREE.Vector3(0,0, 0);
+
+      this.createOrthographicCamera();
+      this.setOrbitControls();
   }
 
   createOrthographicCamera() {
-    const initialCameraPosition = new THREE.Vector3(
-        24 * Math.sin(0.2 * Math.PI),
-        15,
-        50 * Math.cos(0.2 * Math.PI)
-      );
-    // focus point of the camera 
-    const target = new THREE.Vector3(0, 0, 0);
-
     // takes aspect ratio and multiplies 
     // by the distance from the camera that you can see
     // based on position of camera & size
@@ -31,10 +32,10 @@ export default class Camera {
       this.sizes.frustrum / 2,
       -this.sizes.frustrum / 2,
       -200,
-      1000
+      10000
     );
-    this.orthographicCamera.position.copy(initialCameraPosition);
-    this.orthographicCamera.lookAt(target);
+    this.orthographicCamera.position.copy(this.initialCameraPosition);
+    this.orthographicCamera.lookAt(this.target);
     // this.helper = new THREE.CameraHelper(this.orthographicCamera);
     this.scene.add(this.orthographicCamera);
     // console.log(this.orthographicCamera);
@@ -50,6 +51,8 @@ export default class Camera {
     this.controls.enableZoom = true;
     this.controls.autoRotate = true;
     this.controls.enablePan = true;
+    this.controls.maxZoom = 1.5;
+    this.controls.minZoom = .75;
     this.controls.autoRotateSpeed = 0.5;
   }
 

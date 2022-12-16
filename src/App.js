@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useEffect, useRef } from "react";
 import Experience from "./components/Experience/Experience";
+import RobotScene from "./components/NavRobot/Robot.js";
 import starsVideo from "./components/utils/videos/file.mp4"
 
 function App() {
@@ -15,7 +16,11 @@ function App() {
 
   return (
     <div className="App">
+      <div class="header">
+        <h1>Under Construction. Feel free to look around, but come back soon to see updates!</h1>
+      </div>
       <div className="wrapper">
+        <RobotScene/>
       <video 
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 
