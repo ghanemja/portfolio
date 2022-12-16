@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      <div class="header">
+      <div className="header">
         <h1>Under Construction. Feel free to look around, but come back soon to see updates!</h1>
       </div>
       <div className="wrapper">
