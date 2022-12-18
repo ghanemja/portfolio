@@ -7,6 +7,8 @@ import { TextureLoader } from "three";
 import home from "../../images/main_screen.jpg";
 import research from "../../images/research.jpg";
 import patents from "../../images/patents.jpg";
+import conferences from "../../images/conferences.jpg";
+import publications from "../../images/publication.jpg";
 import Renderer from "../Experience/Renderer";
 
 function Model(props, ref) {
@@ -22,15 +24,14 @@ function Model(props, ref) {
     },
     { pointerEvents: true }
   );
-  const { nodes, materials } = useGLTF("/models/robot-nav-flipped-screen.glb");
+  const { nodes, materials } = useGLTF("/models/robot-nav-flipped-screen1.glb");
   
 const texture = useLoader(TextureLoader, nav);
 
-function switchImage(current, buttonPressed) {
+function switchImage(buttonPressed) {
     console.log("button is pressed")
     setNav(buttonPressed);
     const texture = useLoader(TextureLoader, nav);
-    console.log(current)
 }
 
   return (
@@ -63,39 +64,94 @@ function switchImage(current, buttonPressed) {
             castShadow
             receiveShadow
             geometry={nodes.aboutMeButton.geometry}
-            material={materials.transparent}
-            position={[1.31, 0, 0]}
-        />
+            onClick={(e) => {
+                switchImage(about)
+            }}
+            position={[-1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
             geometry={nodes.innovationButton.geometry}
-            material={materials.transparent}
-            position={[1.31, 0, 0]}
-        />
+            onClick={(e) => {
+                switchImage(patents)
+            }}
+            position={[-1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
             geometry={nodes.volunteeringButton.geometry}
-            material={materials.transparent}
-            position={[1.31, 0, 0]}
-        />
+            position={[-1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
             geometry={nodes.contactButton.geometry}
-            material={materials.transparent}
-            position={[1.31, 0, 0]}
-        />
+            position={[-1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
             geometry={nodes.industryButton.geometry}
             onClick={(e) => {
-                switchImage(nodes.industryButton, research)
+                switchImage(research)
             }}
             position={[-1.31, 0, 0]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+          <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.PatentsButton.geometry}
+        // material={materials.transparent}
+        onClick={(e) => {
+            switchImage(patents)
+        }}
+        position={[-1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.PublicationsButton.geometry}
+        // material={materials.transparent}
+        position={[-1.31, 0, -11.26]}
+        onClick={(e) => {
+            switchImage(publications)
+        }}
+        scale={[1, 1, 1.32]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.ConferencesButton.geometry}
+        // material={materials.transparent}
+        onClick={(e) => {
+            switchImage(conferences)
+        }}
+        position={[-1.31, 0, -19.43]}
+        scale={[1, 1, 1.27]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.ResearchButton.geometry}
+        // material={materials.transparent}
+        onClick={(e) => {
+            switchImage(research)
+        }}
+        position={[-1.31, 0, -23.29]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.BackButton.geometry}
+        onClick={(e) => {
+            switchImage(home)
+        }}
+        // material={materials.publications}
+        position={[-1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+
         <mesh
             castShadow
             receiveShadow
@@ -107,5 +163,5 @@ function switchImage(current, buttonPressed) {
   );
 }
 
-useGLTF.preload("/models/robot-nav-flipped-screen.glb");
+useGLTF.preload("/models/robot-nav-flipped-screen1.glb");
 export default forwardRef(Model);

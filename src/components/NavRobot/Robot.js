@@ -42,7 +42,7 @@ export default function RobotScene() {
       />
       <ambientLight intensity={0.5} />
       <pointLight position={[0, 100, -10]} intensity={2.5} />
-      <OrbitControls enableRotate={true} enableDamping={true} enableZoom={true}/>
+      {/* <OrbitControls enableRotate={false} enableDamping={true} enableZoom={true}/> */}
 
       <OrbitController />
     </Canvas>
