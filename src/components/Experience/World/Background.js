@@ -5,7 +5,7 @@ export default class Background {
     constructor() {
         this.experience = new Experience();
         this.scene = this.experience.scene;
-        this.setBackground();
+        // this.setBackground();
     }
 
     setBackground() {

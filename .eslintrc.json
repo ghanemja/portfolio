@@ -1,7 +1,7 @@
 {
     "extends": ["plugin:react/recommended"],
     "rules": {
-        "react/no-unknown-property": "warn",
+        "react/no-unknown-property": "off",
         "strict": "off"
     }
 }

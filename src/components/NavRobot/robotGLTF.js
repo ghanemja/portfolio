@@ -2,14 +2,17 @@ import React, { useRef, forwardRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useThree, useFrame, useLoader } from "@react-three/fiber";
 import { useDrag, useHover } from "@use-gesture/react";
-import img from "../../images/home.svg";
 import * as THREE from "three";
+import { TextureLoader } from "three";
+import home from "../../images/main_screen.jpg";
+import research from "../../images/research.jpg";
+import patents from "../../images/patents.jpg";
+import Renderer from "../Experience/Renderer";
 
 function Model(props, ref) {
-  const [hover, setHover] = React.useState(false);
-  const [scale] = React.useState([0.5, 0.75, 0.425]);
+  const [nav, setNav] = React.useState(home);
   const robot = useRef();
-  const [position, setPosition] = React.useState([0, 0, 0]);
+  const [position, setPosition] = React.useState([10, 2, 5]);
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   const bind = useDrag(
@@ -19,99 +22,90 @@ function Model(props, ref) {
     },
     { pointerEvents: true }
   );
-  const { nodes, materials } = useGLTF("/models/newRobot.glb");
+  const { nodes, materials } = useGLTF("/models/robot-nav-flipped-screen.glb");
+  
+const texture = useLoader(TextureLoader, nav);
 
-  const texture = useLoader(THREE.TextureLoader, img);
+function switchImage(current, buttonPressed) {
+    console.log("button is pressed")
+    setNav(buttonPressed);
+    const texture = useLoader(TextureLoader, nav);
+    console.log(current)
+}
+
   return (
-    <group
-      {...props}
-      scale={scale}
-      dispose={null}
-      ref={robot}
-      position={position}
-      {...bind()}
-    >
-      <group position={[0, -13.54, 0]} scale={[1.7, 11.99, 19.34]}>
+    <group {...props} dispose={null}>
         <mesh
-          geometry={nodes.Cube.geometry}
-          material={materials["Robot base"]}
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube.geometry}
+            material={materials["Robot base"]}
         />
         <mesh
-          geometry={nodes.Cube_1.geometry}
-          material={materials["Robot second"]}
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube_1.geometry}
+            material={materials["Robot second"]}
         />
         <mesh
-          geometry={nodes.Cube_2.geometry}
-          material={materials["Robot third"]}
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube_2.geometry}
+            material={materials["Robot third"]}
         />
-      </group>
-      <group name="screen-group">
         <mesh
-          geometry={nodes.Screen.geometry}
-          position={[0, -13.54, 0]}
-          scale={[1.7, 11.99, 19.34]}
-        >
-          {" "}
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
+            castShadow
+            receiveShadow
+            geometry={nodes.Cube_3.geometry}
+            material={materials.Black}
+        />
         <mesh
-          geometry={nodes.top_right_link.geometry}
-          name="top-right"
-          position={[0, -13.54, 0]}
-          scale={[1.7, 11.99, 19.34]}
-        >
-          {" "}
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
+            castShadow
+            receiveShadow
+            geometry={nodes.aboutMeButton.geometry}
+            material={materials.transparent}
+            position={[1.31, 0, 0]}
+        />
         <mesh
-          geometry={nodes.mid_right_link.geometry}
-          name="mid-right"
-          position={[0, -13.54, 0]}
-          scale={[1.7, 11.99, 19.34]}
-        >
-          {" "}
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
+            castShadow
+            receiveShadow
+            geometry={nodes.innovationButton.geometry}
+            material={materials.transparent}
+            position={[1.31, 0, 0]}
+        />
         <mesh
-          geometry={nodes.bottom_right_link.geometry}
-          name="bottom-right"
-          position={[0, -13.54, 0]}
-          scale={[1.7, 11.99, 19.34]}
-        >
-          {" "}
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
+            castShadow
+            receiveShadow
+            geometry={nodes.volunteeringButton.geometry}
+            material={materials.transparent}
+            position={[1.31, 0, 0]}
+        />
         <mesh
-          geometry={nodes.top_left_link.geometry}
-          name="top-left"
-          position={[0, -13.54, 0]}
-          scale={[1.7, 11.99, 19.34]}
-        >
-          {" "}
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
+            castShadow
+            receiveShadow
+            geometry={nodes.contactButton.geometry}
+            material={materials.transparent}
+            position={[1.31, 0, 0]}
+        />
         <mesh
-          geometry={nodes.mid_left_link.geometry}
-          name="mid-left"
-          position={[0, -13.54, 0]}
-          scale={[1.7, 11.99, 19.34]}
-        >
-          {" "}
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
+            castShadow
+            receiveShadow
+            geometry={nodes.industryButton.geometry}
+            onClick={(e) => {
+                switchImage(nodes.industryButton, research)
+            }}
+            position={[-1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
-          geometry={nodes.bottom_left_link.geometry}
-          name="bottom-left"
-          position={[0, -13.54, 0]}
-          scale={[1.7, 11.99, 19.34]}
-        >
-          {" "}
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
-      </group>
+            castShadow
+            receiveShadow
+            geometry={nodes.Screen.geometry}
+            // material={materials.main_screen}
+            position={[1.31, 0, 0]}
+        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
     </group>
   );
 }
 
-useGLTF.preload("/models/newRobot.glb");
+useGLTF.preload("/models/robot-nav-flipped-screen.glb");
 export default forwardRef(Model);
