@@ -20,7 +20,7 @@ function App() {
         <h1>Under Construction. Feel free to look around, but come back soon to see updates!</h1>
       </div> */}
       {/* <div className="wrapper"> */}
-        <RobotScene/>
+      <RobotScene/>
       <video 
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 

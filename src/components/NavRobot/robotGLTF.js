@@ -9,10 +9,18 @@ import research from "../../images/research.jpg";
 import patents from "../../images/patents.jpg";
 import conferences from "../../images/conferences.jpg";
 import publications from "../../images/publication.jpg";
+import about from "../../images/GeneralAbout.jpg";
+import hobbies from "../../images/hobbies.jpg";
+import skills from "../../images/skills.jpg";
+import chase from "../../images/jpmorgan.jpg";
+import pc from "../../images/pc.jpg";
+import volunteer from "../../images/Group 10volunteering.jpg";
+import contact from "../../images/contact.jpg";
 import Renderer from "../Experience/Renderer";
 
 function Model(props, ref) {
   const [nav, setNav] = React.useState(home);
+  const [page, setPage] = React.useState("home");
   const robot = useRef();
   const [position, setPosition] = React.useState([10, 2, 5]);
   const { size, viewport } = useThree();
@@ -24,10 +32,13 @@ function Model(props, ref) {
     },
     { pointerEvents: true }
   );
+
   const { nodes, materials } = useGLTF("/models/robot-nav-flipped-screen1.glb");
   
 const texture = useLoader(TextureLoader, nav);
-
+// document.body.addEventListener( 'mousemove', ( e )=>{
+//     controls.handleMouseMoveRotate( e ) 
+// });
 function switchImage(buttonPressed) {
     console.log("button is pressed")
     setNav(buttonPressed);
@@ -65,6 +76,7 @@ function switchImage(buttonPressed) {
             receiveShadow
             geometry={nodes.aboutMeButton.geometry}
             onClick={(e) => {
+                setPage("about");
                 switchImage(about)
             }}
             position={[-1.31, 0, 0]}
@@ -74,7 +86,12 @@ function switchImage(buttonPressed) {
             receiveShadow
             geometry={nodes.innovationButton.geometry}
             onClick={(e) => {
-                switchImage(patents)
+                if (page == "contact") {
+                    window.open("mailto:janghanem@gmail.com?subject=Inquiry");
+                } else {
+                    setPage("innovation");
+                    switchImage(patents)
+                }
             }}
             position={[-1.31, 0, 0]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
@@ -82,12 +99,24 @@ function switchImage(buttonPressed) {
             castShadow
             receiveShadow
             geometry={nodes.volunteeringButton.geometry}
+            onClick={(e) => {
+                if (page == "contact") {
+                    window.open("https://www.linkedin.com/in/janelle-ghanem/");
+                } else {
+                    setPage("volunteering");
+                    switchImage(volunteer)
+                }
+            }}
             position={[-1.31, 0, 0]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
             geometry={nodes.contactButton.geometry}
+            onClick={(e) => {
+                setPage("contact");
+                switchImage(contact)
+            }}
             position={[-1.31, 0, 0]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
@@ -95,7 +124,8 @@ function switchImage(buttonPressed) {
             receiveShadow
             geometry={nodes.industryButton.geometry}
             onClick={(e) => {
-                switchImage(research)
+                setPage("industry")
+                switchImage(chase)
             }}
             position={[-1.31, 0, 0]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
@@ -103,9 +133,15 @@ function switchImage(buttonPressed) {
         castShadow
         receiveShadow
         geometry={nodes.PatentsButton.geometry}
-        // material={materials.transparent}
+        material={materials["Robot base"]}
         onClick={(e) => {
-            switchImage(patents)
+            if (page == "innovation") {
+                switchImage(patents)
+            } else if (page == "about") {
+                switchImage(about)
+            } else if (page == "industry") {
+                switchImage(chase)
+            }
         }}
         position={[-1.31, 0, 0]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
@@ -116,7 +152,13 @@ function switchImage(buttonPressed) {
         // material={materials.transparent}
         position={[-1.31, 0, -11.26]}
         onClick={(e) => {
-            switchImage(publications)
+            if (page == "innovation") {
+                switchImage(publications)
+            } else if (page == "about") {
+                switchImage(hobbies)
+            } else if (page == "industry") {
+                switchImage(pc)
+            }
         }}
         scale={[1, 1, 1.32]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
@@ -126,7 +168,13 @@ function switchImage(buttonPressed) {
         geometry={nodes.ConferencesButton.geometry}
         // material={materials.transparent}
         onClick={(e) => {
-            switchImage(conferences)
+            console.log("conference click")
+            console.log(page)
+            if (page == "innovation") {
+                switchImage(conferences)
+            } else if (page == "about") {
+                switchImage(skills)
+            }
         }}
         position={[-1.31, 0, -19.43]}
         scale={[1, 1, 1.27]}
