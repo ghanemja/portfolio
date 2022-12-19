@@ -24,7 +24,7 @@ export default class SpaceLab extends EventEmitter {
     this.spacechilds = {};
     this.setModel();
     this.setAnimations();
-    // this.onMouseDown();
+    this.onMouseDown();
     //functions
   }
 

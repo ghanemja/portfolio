@@ -17,17 +17,17 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <h1>Under Construction. Feel free to look around, but come back soon to see updates!</h1>
+        <h1>Under Construction. Feel free to navigate on the robot, or drag and zoom into the space station, but come back for updates!</h1>
       </div>
         <RobotScene/>
-      <video 
+      {/* <video 
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 
         autoPlay muted loop id="videoBackground"
 
       >
           <source src={starsVideo} type="video/mp4"/>
-      </video>
+      </video> */}
       {/* </div> */}
       <div className="experience">
         <canvas className="experience-canvas" />

@@ -17,7 +17,9 @@ export default function RobotScene() {
     <Canvas
       style={{
         height: "100%",
-        width: "100%",
+        width: "50vw",
+        // marginLeft: "auto",
+        // display: "flex",
         zIndex: 1,
         position: "absolute"
       }}
