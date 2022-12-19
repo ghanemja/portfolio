@@ -21,8 +21,7 @@ import { useState } from "react";
 function Model(props, ref) {
   const [nav, setNav] = React.useState(home);
   const [page, setPage] = React.useState("home");
-  const robot = useRef();
-  const [position, setPosition] = React.useState([10, 2, 5]);
+  const [position, setPosition] = React.useState([3.5, 0, 0]);
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   const bind = useDrag(
@@ -46,7 +45,7 @@ function switchImage(buttonPressed, e) {
 }
 
   return (
-    <group {...props} {...bind} dispose={null}>
+    <group {...props} {...bind} position={position} dispose={null}>
         <mesh
             castShadow
             receiveShadow

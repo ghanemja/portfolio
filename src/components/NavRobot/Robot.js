@@ -23,12 +23,12 @@ export default function RobotScene() {
       }}
     >
        <Float
-        speed={2}
+        speed={1.5}
         rotationIntensity={0.2}
         floatIntensity={2}
-        floatingRange={[1, 1.2]}
+        floatingRange={[1, 1.1]}
       >
-        <Robot rotation={[0, 11, 0]} scale={[.0001, 0.2, 0.2]} />
+        <Robot rotation={[0, 11, 0]} scale={[.0001, 0.2, 0.23]} />
         {/* <Robot rotation={[0, 30, 0]} scale={[0.3, 0.55, 0.6]} /> */}
       </Float> 
 
