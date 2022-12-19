@@ -38,14 +38,14 @@
 }
 
 .header {
-  padding: 1.5rem;
+  padding: 3px;
   width: 100%;
   opacity: 90%;
   margin-bottom: auto;
   text-align: center;
   background: #a85832;
   color: white;
-  font-size: 2rem;
+  font-size: 12px;
   z-index: 999
 }
 
