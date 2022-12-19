@@ -19,7 +19,6 @@ function App() {
       <div className="header">
         <h1>Under Construction. Feel free to look around, but come back soon to see updates!</h1>
       </div>
-      <div className="wrapper">
         <RobotScene/>
       <video 
         ref={videoRef} 
@@ -29,7 +28,7 @@ function App() {
       >
           <source src={starsVideo} type="video/mp4"/>
       </video>
-      </div>
+      {/* </div> */}
       <div className="experience">
         <canvas className="experience-canvas" />
       </div>

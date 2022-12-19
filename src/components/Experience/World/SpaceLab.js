@@ -24,7 +24,7 @@ export default class SpaceLab extends EventEmitter {
     this.spacechilds = {};
     this.setModel();
     this.setAnimations();
-    this.onMouseDown();
+    // this.onMouseDown();
     //functions
   }
 
@@ -49,7 +49,7 @@ export default class SpaceLab extends EventEmitter {
 
   setAnimations(){
     this.mixer = new THREE.AnimationMixer(this.labscene);
-     console.log(this.lab.animations)
+    //  console.log(this.lab.animations)
   }
 
   initializeRaycaster(e) {

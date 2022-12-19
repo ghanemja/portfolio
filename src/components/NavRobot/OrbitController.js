@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { angleToRadians } from "../utils/anglesToRadians";
 
 export default function OrbitController() {
+
   const orbitControlsRef = useRef(null);
   useFrame((state) => {
     if (!!orbitControlsRef.current) {
@@ -15,10 +16,13 @@ export default function OrbitController() {
     }
   });
 
+  useFrame((state) => orbitControlsRef.current.update());
+
   return (
     <OrbitControls
+      enableRotate={true}
       enableZoom={true}
-      enableDamping={false}
+      enableDamping={true}
       ref={orbitControlsRef}
       minPolarAngle={angleToRadians(30)}
       maxPolarAngle={angleToRadians(80)}
