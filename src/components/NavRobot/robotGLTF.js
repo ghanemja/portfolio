@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useThree, useFrame, useLoader } from "@react-three/fiber";
-import { useDrag, useHover } from "@use-gesture/react";
+import { useDrag } from "@use-gesture/react";
 import * as THREE from "three";
 import { TextureLoader } from "three";
 import home from "../../images/main_screen.jpg";
@@ -16,7 +16,7 @@ import chase from "../../images/jpmorgan.jpg";
 import pc from "../../images/pc.jpg";
 import volunteer from "../../images/volunteer.jpg";
 import contact from "../../images/contactme.jpg";
-import Renderer from "../Experience/Renderer";
+import { useState } from "react";
 
 function Model(props, ref) {
   const [nav, setNav] = React.useState(home);
@@ -33,20 +33,20 @@ function Model(props, ref) {
     { pointerEvents: true }
   );
 
-  const { nodes, materials } = useGLTF("/models/robot-nav-flipped-screen1.glb");
   
+  const { nodes, materials } = useGLTF("/models/robot-5.glb");
+
 const texture = useLoader(TextureLoader, nav);
-// document.body.addEventListener( 'mousemove', ( e )=>{
-//     controls.handleMouseMoveRotate( e ) 
-// });
-function switchImage(buttonPressed) {
-    console.log("button is pressed")
+
+
+
+function switchImage(buttonPressed, e) {
     setNav(buttonPressed);
     const texture = useLoader(TextureLoader, nav);
 }
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} {...bind} dispose={null}>
         <mesh
             castShadow
             receiveShadow
@@ -77,10 +77,10 @@ function switchImage(buttonPressed) {
             geometry={nodes.aboutMeButton.geometry}
             onClick={(e) => {
                 setPage("about");
-                switchImage(about)
+                switchImage(about, e)
             }}
-            position={[-1.31, 0, 0]}
-        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+            position={[-2.29, -10.59, 9.51]}
+            ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
@@ -90,11 +90,11 @@ function switchImage(buttonPressed) {
                     window.open("mailto:janghanem@gmail.com?subject=Inquiry");
                 } else {
                     setPage("innovation");
-                    switchImage(patents)
+                    switchImage(patents, e)
                 }
             }}
-            position={[-1.31, 0, 0]}
-        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+            position={[2.29, -14.92, 7.61]}
+            ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
@@ -104,63 +104,63 @@ function switchImage(buttonPressed) {
                     window.open("https://www.linkedin.com/in/janelle-ghanem/");
                 } else {
                     setPage("volunteering");
-                    switchImage(volunteer)
+                    switchImage(volunteer, e)
                 }
             }}
-            position={[-1.31, 0, 0]}
-        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+            position={[-2.29, -18.91, 5.37]}
+            ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
             geometry={nodes.contactButton.geometry}
             onClick={(e) => {
                 setPage("contact");
-                switchImage(contact)
+                switchImage(contact, e)
             }}
-            position={[-1.31, 0, 0]}
-        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+            position={[-2.29, -10.51, -6.34]}
+            ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
         <mesh
             castShadow
             receiveShadow
             geometry={nodes.industryButton.geometry}
             onClick={(e) => {
                 setPage("industry")
-                switchImage(chase)
+                switchImage(chase, e)
             }}
-            position={[-1.31, 0, 0]}
-        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+            position={[-2.29, -14.15, -7.37]}
+            ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
           <mesh
         castShadow
         receiveShadow
         geometry={nodes.PatentsButton.geometry}
-        material={materials["Robot base"]}
+        // material={materials["Robot base"]}
         onClick={(e) => {
             if (page == "innovation") {
-                switchImage(patents)
+                switchImage(patents, e)
             } else if (page == "about") {
-                switchImage(about)
+                switchImage(about, e)
             } else if (page == "industry") {
-                switchImage(chase)
+                switchImage(chase, e)
             }
         }}
-        position={[-1.31, 0, 0]}
+        position={[-1.89, -6.95, 12.18]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.PublicationsButton.geometry}
         // material={materials.transparent}
-        position={[-1.31, 0, -11.26]}
+        position={[-1.89, -6.95, 4.8]}
+        scale={[1, 1, 1.32]}
         onClick={(e) => {
             if (page == "innovation") {
-                switchImage(publications)
+                switchImage(publications, e)
             } else if (page == "about") {
-                switchImage(hobbies)
+                switchImage(hobbies, e)
             } else if (page == "industry") {
-                switchImage(pc)
+                switchImage(pc, e)
             }
         }}
-        scale={[1, 1, 1.32]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
       <mesh
         castShadow
@@ -171,12 +171,12 @@ function switchImage(buttonPressed) {
             console.log("conference click")
             console.log(page)
             if (page == "innovation") {
-                switchImage(conferences)
+                switchImage(conferences, e)
             } else if (page == "about") {
-                switchImage(skills)
+                switchImage(skills, e)
             }
         }}
-        position={[-1.31, 0, -19.43]}
+        position={[-1.89, -6.95, -3.99]}
         scale={[1, 1, 1.27]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
       <mesh
@@ -185,27 +185,22 @@ function switchImage(buttonPressed) {
         geometry={nodes.ResearchButton.geometry}
         // material={materials.transparent}
         onClick={(e) => {
-            switchImage(research)
+            switchImage(research, e)
         }}
-        position={[-1.31, 0, -23.29]}
+        position={[-1.89, -6.95, -11.16]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.BackButton.geometry}
-        // material={materials.transparent}
-        position={[-1.31, 0, 1.17]}
-        scale={1.09}
-        // castShadow
-        // receiveShadow
-        // geometry={nodes.BackButton.geometry}
+        position={[-1.92, -12.13, -12.88]}
+        scale={[1.37, 1.12, 1.37]}
+        material={materials["transparent"]}
         onClick={(e) => {
             setPage("home");
-            switchImage(home)
+            switchImage(home, e)
         }}
-        // material={materials.publications}
-        // position={[-1.31, 0, 0]}
-        ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+        > <meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
 
         <mesh
             castShadow
@@ -218,5 +213,5 @@ function switchImage(buttonPressed) {
   );
 }
 
-useGLTF.preload("/models/robot-nav-flipped-screen1.glb");
+useGLTF.preload("/models/robot-5.glb");
 export default forwardRef(Model);
