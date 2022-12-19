@@ -9,6 +9,7 @@ import {
 } from "@react-three/drei";
 import OrbitController from "./OrbitController";
 import { useThree, useFrame, useLoader } from "@react-three/fiber";
+import { PerspectiveCamera } from "three";
 
 export default function RobotScene() {
   
@@ -21,15 +22,22 @@ export default function RobotScene() {
         position: "absolute"
       }}
     >
-      <Float
+       <Float
         speed={2}
         rotationIntensity={0.2}
         floatIntensity={2}
-        floatingRange={[1, 1.5]}
+        floatingRange={[1, 1.2]}
       >
-        <Robot rotation={[0, 30, 0]} scale={[0.3, 0.55, 0.6]} />
-      </Float>
-      <OrthographicCamera
+        <Robot rotation={[0, 11, 0]} scale={[.0001, 0.2, 0.2]} />
+        {/* <Robot rotation={[0, 30, 0]} scale={[0.3, 0.55, 0.6]} /> */}
+      </Float> 
+
+      <perspectiveCamera
+        near={10}
+        far={300}
+        fov={400}
+      />
+      {/* <OrthographicCamera
         top={300}
         left={300}
         bottom={-300}
@@ -39,11 +47,11 @@ export default function RobotScene() {
         makeDefault
         position={[0, 0, 0]}
         zoom={30}
-      />
+      /> */}
       <ambientLight intensity={0.5} />
       <pointLight position={[0, 100, -10]} intensity={2.5} />
       {/* <OrbitControls enableRotate={true} enableDamping={true} enableZoom={true}/> */}
-      <OrbitController />
+      {/* <OrbitController /> */}
     </Canvas>
   );
 }
