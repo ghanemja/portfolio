@@ -28,12 +28,13 @@ export default function RobotScene() {
         floatIntensity={2}
         floatingRange={[1, 1.1]}
       >
-        <Robot rotation={[0, 11, 0]} scale={[.0001, 0.2, 0.23]} />
+        <Robot rotation={[0, 11, 0]} scale={[.0001, 0.16, 0.17]} />
         {/* <Robot rotation={[0, 30, 0]} scale={[0.3, 0.55, 0.6]} /> */}
       </Float> 
 
       <perspectiveCamera
         near={10}
+        // zoom={0.08}
         far={300}
         fov={400}
       />
