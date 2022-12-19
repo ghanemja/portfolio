@@ -5,7 +5,7 @@ export default class Background {
     constructor() {
         this.experience = new Experience();
         this.scene = this.experience.scene;
-        // this.setBackground();
+        this.setBackground();
     }
 
     setBackground() {
@@ -15,9 +15,9 @@ export default class Background {
         })
         const starPositions = []
         for(let i = 0; i < 100000; i++) {
-            const x = (Math.random() - 0.5) * 2000
-            const y = (Math.random() - 0.5) * 2000
-            const z = -Math.random() * 1000
+            const x = (Math.random() - 0.5) * 700
+            const y = (Math.random() - 0.5) * 700
+            const z = -Math.random() * 700
             starPositions.push(x,y,z)
         }
         starGeometry.setAttribute("position", new THREE.Float32BufferAttribute(starPositions, 3))
