@@ -8,14 +8,14 @@ import home from "../../images/main_screen.jpg";
 import research from "../../images/research.jpg";
 import patents from "../../images/patents.jpg";
 import conferences from "../../images/conferences.jpg";
-import publications from "../../images/publication.jpg";
-import about from "../../images/GeneralAbout.jpg";
+import publications from "../../images/publications.jpg";
+import about from "../../images/about.jpg";
 import hobbies from "../../images/hobbies.jpg";
 import skills from "../../images/skills.jpg";
 import chase from "../../images/jpmorgan.jpg";
 import pc from "../../images/pc.jpg";
-import volunteer from "../../images/Group 10volunteering.jpg";
-import contact from "../../images/contact.jpg";
+import volunteer from "../../images/volunteer.jpg";
+import contact from "../../images/contactme.jpg";
 import Renderer from "../Experience/Renderer";
 
 function Model(props, ref) {
@@ -193,11 +193,18 @@ function switchImage(buttonPressed) {
         castShadow
         receiveShadow
         geometry={nodes.BackButton.geometry}
+        // material={materials.transparent}
+        position={[-1.31, 0, 1.17]}
+        scale={1.09}
+        // castShadow
+        // receiveShadow
+        // geometry={nodes.BackButton.geometry}
         onClick={(e) => {
+            setPage("home");
             switchImage(home)
         }}
         // material={materials.publications}
-        position={[-1.31, 0, 0]}
+        // position={[-1.31, 0, 0]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
 
         <mesh
