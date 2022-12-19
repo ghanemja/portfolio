@@ -21,7 +21,7 @@ import { useState } from "react";
 function Model(props, ref) {
   const [nav, setNav] = React.useState(home);
   const [page, setPage] = React.useState("home");
-  const [position, setPosition] = React.useState([4.8, -2.5, 0]);
+  const [position, setPosition] = React.useState([4.5, -2, 0]);
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
   const bind = useDrag(
