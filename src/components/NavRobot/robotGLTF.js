@@ -149,7 +149,7 @@ function switchImage(buttonPressed, e) {
                 switchImage(about, e)
             } else if (page == "industry") {
                 switchImage(chase, e)
-            }
+            } else {}
         }}
         position={[-1.89, -6.95, 12.18]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
@@ -167,7 +167,7 @@ function switchImage(buttonPressed, e) {
                 switchImage(hobbies, e)
             } else if (page == "industry") {
                 switchImage(pc, e)
-            }
+            } else {}
         }}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
       <mesh
@@ -176,13 +176,11 @@ function switchImage(buttonPressed, e) {
         geometry={nodes.ConferencesButton.geometry}
         // material={materials.transparent}
         onClick={(e) => {
-            console.log("conference click")
-            console.log(page)
             if (page == "innovation") {
                 switchImage(conferences, e)
             } else if (page == "about") {
                 switchImage(skills, e)
-            }
+            } else {}
         }}
         position={[-1.89, -6.95, -3.99]}
         scale={[1, 1, 1.27]}
@@ -193,7 +191,9 @@ function switchImage(buttonPressed, e) {
         geometry={nodes.ResearchButton.geometry}
         // material={materials.transparent}
         onClick={(e) => {
-            switchImage(research, e)
+            if (page == "innovation") {
+                switchImage(research, e)
+            } else {}
         }}
         position={[-1.89, -6.95, -11.16]}
         ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
