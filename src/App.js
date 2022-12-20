@@ -20,6 +20,7 @@ function App() {
   };
   const typeStyle = { whiteSpace: "pre-line", fontFamily: "'Press Start 2P', monospace", color: "green", textAlign: "start",  paddingTop: "0.5em", fontSize: '1em',  marginRight: "auto" };
   const [visible, setVisible] = React.useState(true)
+  const [animate, setAnimate] = React.useState(false)
   window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
   });
@@ -30,7 +31,12 @@ function App() {
     <div className="App" >
         { visible ? 
           <>
-            <div className="loader">
+            <div 
+             className={
+              animate ? 'loader-after' : 'loader'
+            }
+            >
+              {/* <CustomLoad isVisible={ this.state.visible}/> */}
               <div className="fakeMenu">
                     <span style={{backgroundColor: "#ff3b47", borderColor: "#9d252b"}} className="dot"></span>
                     <span style={{backgroundColor: "#00d742", borderColor: "#049931"}} className="dot"></span>
@@ -42,78 +48,92 @@ function App() {
                               'jan-ghanem ~ %', 500, 'jan-ghanem ~ % git clone https://github.com/ghanemja/mtv-welcome-to-my-crib', 500
                             ]}
                   wrapper="div"
+                  speed={72}
                   cursor={false}
                   repeat={0}
                   style={typeStyle}
                   />
                   <TypeAnimation
-                  sequence={['', 6000,
+                  sequence={['', 3100,
                             'Cloning into \'mtv-welcome-to-my-crib\'...', 
                             () => {}
                             ]}
                   wrapper="div"
+                  speed={99}
                   cursor={false}
                   repeat={0}
                   style={typeStyle2}
                   />
                   <TypeAnimation
                   sequence={[
-                            '', 8000, 'remote: Enumerating objects: 15, done.', 
+                            '', 4500, 'remote: Enumerating objects: 15, done.', 
                             () => {}
                             ]}
                   wrapper="div"
+                  cursor={false}
+                  repeat={0}
+                  speed={99}
+                  style={typeStyle2}
+                  />
+                  <TypeAnimation
+                  sequence={[
+                            '', 5500,'remote: Counting objects: 100% (15/15), done.',
+                            () => {}
+                            ]}
+                  wrapper="div"
+                  speed={99}
                   cursor={false}
                   repeat={0}
                   style={typeStyle2}
                   />
                   <TypeAnimation
                   sequence={[
-                            '', 12000,'remote: Counting objects: 100% (15/15), done.',
+                            '', 6500, 'remote: Total 15 (delta 1), reused 11 (delta 0), pack-reused 0',
                             () => {}
                             ]}
                   wrapper="div"
                   cursor={false}
+                  speed={99}
                   repeat={0}
                   style={typeStyle2}
                   />
                   <TypeAnimation
                   sequence={[
-                            '', 15000, 'remote: Total 15 (delta 1), reused 11 (delta 0), pack-reused 0',
+                            '', 7500, 'Unpacking objects: 100% (15/15), done.',  
                             () => {}
                             ]}
                   wrapper="div"
                   cursor={false}
                   repeat={0}
+                  speed={80}
                   style={typeStyle2}
                   />
                   <TypeAnimation
-                  sequence={[
-                            '', 18000, 'Unpacking objects: 100% (15/15), done.',  
-                            () => {}
-                            ]}
-                  wrapper="div"
-                  cursor={false}
-                  repeat={0}
-                  style={typeStyle2}
-                  />
-                  <TypeAnimation
-                  sequence={['', 21000,
+                  sequence={['', 9500,
                             'jan-ghanem ~ % cd mtv-welcome-to-my-crib', // Waits 2s
                             ]}
                   wrapper="div"
                   cursor={false}
+                  speed={60}
                   repeat={0}
                   style={typeStyle}
                   />
                   <TypeAnimation
-                  sequence={['', 24000,
-                            'jan-ghanem@mtv-welcome-to-my-crib ~ % ls', () => {}
+                  sequence={['', 11500,
+                            'jan-ghanem@mtv-welcome-to-my-crib ~ % ls', 50, () => {}
                             , () => {
-                              setVisible(false)
+                              setAnimate(true);
+                              setTimeout(() => {
+                                setVisible(false);
+                              }, 1000)
+                              console.log(visible)
+                              console.log(animate)
+
                             }
                             ]}
                   wrapper="div"
                   cursor={true}
+                  speed={50}
                   repeat={0}
                   style={typeStyle}
                   />
@@ -123,10 +143,10 @@ function App() {
         : 
         <div>
             <CustomizedDialogs />
-            <RobotScene />
             <div className="experience">
               <canvas className="experience-canvas" />
             </div> 
+            <RobotScene />
         </div> 
         }
           {/* <div className="loader">

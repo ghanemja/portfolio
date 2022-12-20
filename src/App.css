@@ -5,7 +5,7 @@
   /* flex-direction: row-reverse; */
   display: flex;
   /* justify-content: center; */
-  align-items: center;
+  /* align-items: center; */
   background-color: black;
 }
 
@@ -33,6 +33,10 @@
 
 .loader {
   margin: auto;
+}
+
+.loader-after {
+  animation: shrink 2s;
 }
 
 body {
@@ -73,4 +77,26 @@ body {
   padding: 20px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+/* left: 100%;
+    top: 100%;
+    transform:translate(-100%,-100%); */
+
+@keyframes shrink {
+  /* from {
+      margin: auto;
+      transform: scale(1);
+  } */
+  to {
+      transform: scale(0.05) translate(-100%, 0);
+      /* left: 100% */
+      /* margin: a.uto; */
+      /* margin-top: auto;
+      margin-bottom: auto */
+      /* transform-origin: top left */
+      /* transform: translateX(0) */
+      /* transform-origin: top left; */
+      /* transform: translate(-100%, 0); */
+  }
 }
