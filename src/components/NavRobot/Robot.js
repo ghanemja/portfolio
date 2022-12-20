@@ -12,17 +12,23 @@ import { useThree, useFrame, useLoader } from "@react-three/fiber";
 import { PerspectiveCamera } from "three";
 
 export default function RobotScene() {
-  
+
   return (
     <Canvas
       style={{
+        zIndex: 1,
         height: "100%",
         width: "50vw",
-        // marginLeft: "auto",
-        // display: "flex",
-        zIndex: 1,
         position: "absolute"
       }}
+      // style={ {
+      //   height: "100%",
+      //   width: "100vw",
+      //   // marginLeft: "auto",
+      //   // display: "flex",
+      //   zIndex: 1,
+      //   position: "absolute"
+      // } }
     >
        <Float
         speed={1.5}
