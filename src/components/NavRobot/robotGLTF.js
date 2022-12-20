@@ -50,7 +50,7 @@ function switchImage(buttonPressed, e) {
   return (
     <group 
         {...props} 
-        scale={(viewport.width / 50)}  // * (active ? 1.5 : 1)}
+        // scale={(viewport.width / 50)}  // * (active ? 1.5 : 1)}
         // {...bind()} 
         onClick={(e) => setActive(!active)}
         position={position} 
@@ -202,7 +202,8 @@ function switchImage(buttonPressed, e) {
         receiveShadow
         geometry={nodes.BackButton.geometry}
         position={[-1.92, -12.13, -12.88]}
-        scale={[1.37 * (viewport.width / 3), 1.12 * (viewport.width / 3), 1.37 * (viewport.width / 3)]}
+        scale={[1.37, 1.12, 1.37]}
+        // scale={[1.37 * (viewport.width / 3), 1.12 * (viewport.width / 3), 1.37 * (viewport.width / 3)]}
         material={materials["Robot base"]}
         onClick={(e) => {
             setPage("home");
