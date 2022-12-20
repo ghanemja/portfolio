@@ -21,6 +21,7 @@ import { useState } from "react";
 function Model(props, ref) {
   const [nav, setNav] = React.useState(home);
   const [page, setPage] = React.useState("home");
+  const [active, setActive] = useState(false)
   const [position, setPosition] = React.useState([0, -1.5, 0]);
   const { size, viewport } = useThree();
   const aspect = size.width / viewport.width;
@@ -44,10 +45,14 @@ function switchImage(buttonPressed, e) {
     const texture = useLoader(TextureLoader, nav);
 }
 
+// useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01))
+
   return (
     <group 
         {...props} 
+        scale={(viewport.width / 50)}  // * (active ? 1.5 : 1)}
         // {...bind()} 
+        onClick={(e) => setActive(!active)}
         position={position} 
         dispose={null}>
         <mesh
@@ -197,8 +202,8 @@ function switchImage(buttonPressed, e) {
         receiveShadow
         geometry={nodes.BackButton.geometry}
         position={[-1.92, -12.13, -12.88]}
-        scale={[1.37, 1.12, 1.37]}
-        material={materials["transparent"]}
+        scale={[1.37 * (viewport.width / 3), 1.12 * (viewport.width / 3), 1.37 * (viewport.width / 3)]}
+        material={materials["Robot base"]}
         onClick={(e) => {
             setPage("home");
             switchImage(home, e)

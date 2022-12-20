@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import Experience from "./components/Experience/Experience";
 import RobotScene from "./components/NavRobot/Robot.js";
 import starsVideo from "./components/utils/videos/file.mp4"
+import CustomizedDialogs from "./components/Experience/Dialog";
 
 function App() {
   useEffect(() => {
@@ -16,10 +17,8 @@ function App() {
 
   return (
     <div className="App">
-      <div className="header">
-        <h1>Under Construction. Feel free to navigate on the robot, or drag, shift + drag, and zoom into the space station, but come back for updates!</h1>
-      </div>
-        <RobotScene/>
+      <CustomizedDialogs />
+      <RobotScene/>
       {/* <video 
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 

@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Experience from "../Experience";
 import { EventEmitter } from "events";
+import { useThree, useFrame, useLoader } from "@react-three/fiber";
 
 export default class SpaceLab extends EventEmitter {
   
@@ -40,7 +41,11 @@ export default class SpaceLab extends EventEmitter {
 
         
     });
+
+    // scale={(viewport.width / 50)}  // * (active ? 1.5 : 1)}
     this.labscene.scale.set(.12,.12,.12);
+    // console.log(window.innerWidth)
+    // this.labscene.scale.set(window.innerWidth/10000, window.innerWidth/10000, window.innerWidth/10000);
     this.labscene.position.set(0,10,0);
     this.scene.add(this.labscene)
     // console.log(this.labscene)

@@ -37,22 +37,5 @@
   text-align: center;
 }
 
-.header {
-  padding: 3px;
-  width: 100%;
-  opacity: 90%;
-  margin-bottom: auto;
-  text-align: center;
-  background: #a85832;
-  color: white;
-  font-size: 20px;
-  z-index: 999
-}
 
-@media only screen and (max-width: 768px) {
-  /* For mobile phones: */
-  [class*="header"] {
-    font-size: 5px;
-    padding: 0.3rem;
-  }
-}
+
