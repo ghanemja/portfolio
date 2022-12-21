@@ -142,6 +142,13 @@ function App() {
           </>
         : 
         <div>
+           <video 
+        ref={videoRef} 
+        onCanPlay={() => setPlayBack()} 
+        autoPlay muted loop id="videoBackground"
+      >
+          <source src={starsVideo} type="video/mp4"/>
+      </video>
             <CustomizedDialogs />
             <div className="experience">
               <canvas className="experience-canvas" />
