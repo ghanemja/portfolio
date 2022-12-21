@@ -21,6 +21,7 @@ import { useState } from "react";
 function Model(props, ref) {
   const [nav, setNav] = React.useState(home);
   const [page, setPage] = React.useState("home");
+  const [subPage, setSubPage] = React.useState("home");
   const [active, setActive] = useState(false)
   const [position, setPosition] = React.useState([0, 0, 0]);
   const { size, viewport } = useThree();
@@ -34,7 +35,7 @@ function Model(props, ref) {
   );
 
   
-  const { nodes, materials } = useGLTF("/models/robot-5.glb");
+  const { nodes, materials } = useGLTF("/models/robot-6.glb");
 
 const texture = useLoader(TextureLoader, nav);
 
@@ -162,6 +163,7 @@ function switchImage(buttonPressed, e) {
         scale={[1, 1, 1.32]}
         onClick={(e) => {
             if (page == "innovation") {
+                setSubPage("publications")
                 switchImage(publications, e)
             } else if (page == "about") {
                 switchImage(hobbies, e)
@@ -200,6 +202,18 @@ function switchImage(buttonPressed, e) {
       <mesh
         castShadow
         receiveShadow
+        geometry={nodes.linkToPub.geometry}
+        onClick={(e) => {
+            if (subPage == "publications") {
+                window.open("https://www.hindawi.com/journals/ijrc/2022/8827417/");
+            } else {}
+        }}
+        // material={materials.research}
+        position={[1.82, -20.06, -10.67]}
+      ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
+      <mesh
+        castShadow
+        receiveShadow
         geometry={nodes.BackButton.geometry}
         position={[-1.92, -12.13, -12.88]}
         scale={[1.37, 1.12, 1.37]}
@@ -222,5 +236,5 @@ function switchImage(buttonPressed, e) {
   );
 }
 
-useGLTF.preload("/models/robot-5.glb");
+useGLTF.preload("/models/robot-6.glb");
 export default forwardRef(Model);
