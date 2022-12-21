@@ -1,24 +1,24 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
   height: 100vh;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
   display: flex;
   /* justify-content: center; */
-  align-items: center;
-  background-color: #000000;
+  /* align-items: center; */
+  background-color: black;
 }
 
 .experience {
   position: fixed;
-  width: 100vw;
+  width: 75vw !important;
   height: 100vh;
   bottom: 0;
   padding: 20px;
 }
 
 .experience-canvas {
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
 }
 
@@ -31,11 +31,72 @@
   left: 0;
 }
 
-.wrapper {
-  display:flex;
-  justify-content: center;
-  text-align: center;
+.loader {
+  margin: auto;
 }
 
+.loader-after {
+  animation: shrink 2s;
+}
 
+body {
+  font-family: 'Press Start 2P', monospace;
+  color: green;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
 
+.dot {
+  height: 15px;
+  width: 15px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  border: 1px solid #000;
+  display: inline-block;
+}
+
+.fakeMenu {
+  align-items: flex-start;
+  width: 75vw;
+  height: 40vh;
+  box-sizing: border-box;
+  height: 25px;
+  background-color: #bbb;
+  margin: 0 auto;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.fakeScreen {
+  background-color: #151515;
+  box-sizing: border-box;
+  width: 75vw;
+  height: 75vh;
+  margin: 0 auto;
+  padding: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* left: 100%;
+    top: 100%;
+    transform:translate(-100%,-100%); */
+
+@keyframes shrink {
+  /* from {
+      margin: auto;
+      transform: scale(1);
+  } */
+  to {
+      transform: scale(0.05) translate(-100%, 0);
+      /* left: 100% */
+      /* margin: a.uto; */
+      /* margin-top: auto;
+      margin-bottom: auto */
+      /* transform-origin: top left */
+      /* transform: translateX(0) */
+      /* transform-origin: top left; */
+      /* transform: translate(-100%, 0); */
+  }
+}
