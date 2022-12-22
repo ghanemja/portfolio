@@ -2,10 +2,13 @@ import "./App.css";
 import React, { useEffect, useRef } from "react";
 import RobotScene from "./components/NavRobot/Robot.js";
 import starsVideo from "./components/utils/videos/file.mp4"
+import stars2 from "./components/utils/videos/stars2.mp4"
 import CustomizedDialogs from "./components/Experience/Dialog";
 import CustomLoad from "./components/Loader/Loader";
 import { TypeAnimation } from 'react-type-animation';
 import Experience from './components/Experience/Experience';
+// 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
+import ReactGA from 'react-ga';
 
 function App() {
   useEffect(() => {
@@ -14,9 +17,21 @@ function App() {
     }
   });
 
+  const TRACKING_ID = "UA-252534935-1";
+  ReactGA.initialize(TRACKING_ID);
+
+  const useAnalyticsEventTracker = (category="Portfolio") => {
+    const eventTracker = (action = "accessSite", label = "user has accessed site") => {
+      ReactGA.event({category, action, label});
+    }
+    return eventTracker;
+  }
+
+  const gaEventTracker = useAnalyticsEventTracker('Home');
+
   const videoRef= useRef();
   const setPlayBack = () => {
-    videoRef.current.playbackRate = 1.2;
+    videoRef.current.playbackRate = 0.7;
   };
   const typeStyle = { whiteSpace: "pre-line", fontFamily: "'Press Start 2P', monospace", color: "green", textAlign: "start",  paddingTop: "0.5em", fontSize: '1em',  marginRight: "auto" };
   const [visible, setVisible] = React.useState(true)
@@ -122,6 +137,7 @@ function App() {
                   sequence={['', 11500,
                             'jan-ghanem@mtv-welcome-to-my-crib ~ % ls', 50, () => {}
                             , () => {
+                              gaEventTracker('pastLoader');
                               setAnimate(true);
                               setTimeout(() => {
                                 setVisible(false);
@@ -142,13 +158,13 @@ function App() {
           </>
         : 
         <div>
-           <video 
+           {/* <video 
         ref={videoRef} 
         onCanPlay={() => setPlayBack()} 
         autoPlay muted loop id="videoBackground"
       >
-          <source src={starsVideo} type="video/mp4"/>
-      </video>
+          <source src={stars2} type="video/mp4"/>
+      </video> */}
             <CustomizedDialogs />
             <div className="experience">
               <canvas className="experience-canvas" />
