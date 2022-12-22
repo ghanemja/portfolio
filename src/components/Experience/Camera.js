@@ -53,7 +53,7 @@ export default class Camera {
     this.controls.enablePan = true;
     this.controls.maxZoom = 4;
     this.controls.minZoom = .75;
-    this.controls.autoRotateSpeed = 0.5;
+    this.controls.autoRotateSpeed = 0.4;
   }
 
   resize() {
