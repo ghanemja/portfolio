@@ -46,7 +46,7 @@ export default class Camera {
   // using camera as orbit controls
   setOrbitControls() {
     this.controls = new OrbitControls(this.orthographicCamera, this.canvas);
-    this.controls.enableRotate = true;
+    // this.controls.enableRotate = true;
     this.controls.enableDamping = false;
     this.controls.enableZoom = true;
     this.controls.autoRotate = true;
@@ -69,5 +69,14 @@ export default class Camera {
 
   update() {
     this.controls.update();
+    // console.log(this.orthographicCamera.position)
+  }
+
+  reposition(left, right, top, bottom) {
+    this.orthographicCamera.left = left;
+    this.orthographicCamera.right = right;
+    this.orthographicCamera.top = top;
+    this.orthographicCamera.bottom = bottom;
+    this.orthographicCamera.updateProjectionMatrix();
   }
 }

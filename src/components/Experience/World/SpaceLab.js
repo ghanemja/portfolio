@@ -52,6 +52,14 @@ export default class SpaceLab extends EventEmitter {
     // console.log(this.spacechilds)
   }
 
+  moveSpaceLab(x,y,z) {
+    this.labscene.position.set(x,y,z);
+  }
+
+  scaleSpaceLab(x,y,z) {
+    this.labscene.scale.set(x,y,z);
+  }
+
   setAnimations(){
     this.mixer = new THREE.AnimationMixer(this.labscene);
     //  console.log(this.lab.animations)
