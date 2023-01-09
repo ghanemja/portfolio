@@ -1,6 +1,6 @@
 import React, { useRef, forwardRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useThree, useFrame, useLoader } from "@react-three/fiber";
+import { useThree, useLoader } from "@react-three/fiber";
 import { useDrag } from "@use-gesture/react";
 import * as THREE from "three";
 import { TextureLoader } from "three";
@@ -17,8 +17,20 @@ import pc from "../../images/pc.jpg";
 import volunteer from "../../images/volunteer.jpg";
 import contact from "../../images/contactme.jpg";
 import { useState } from "react";
+import scaleSpaceLab from "../Experience/World/SpaceLab";
+import moveSpaceLab from "../Experience/World/SpaceLab";
+import PropTypes from 'prop-types';
+import Experience from "../Experience/Experience";
+
+// Model.propTypes = {
+//     rotation: PropTypes.array,
+//     scale: PropTypes.array,
+//     experience: Experience,
+// };
 
 function Model(props, ref) {
+
+//   let experience = props.experience;  
   const [nav, setNav] = React.useState(home);
   const [page, setPage] = React.useState("home");
   const [subPage, setSubPage] = React.useState("home");
@@ -38,8 +50,6 @@ function Model(props, ref) {
   const { nodes, materials } = useGLTF("/models/robot-6.glb");
 
 const texture = useLoader(TextureLoader, nav);
-
-
 
 function switchImage(buttonPressed, e) {
     setNav(buttonPressed);
@@ -100,6 +110,8 @@ function switchImage(buttonPressed, e) {
                 } else {
                     setPage("innovation");
                     switchImage(patents, e)
+                    // experience.repositionCamera(20,20,20,20);
+                    // moveSpaceLab(0,20,0)
                 }
             }}
             position={[2.29, -14.92, 7.61]}
@@ -125,6 +137,12 @@ function switchImage(buttonPressed, e) {
             onClick={(e) => {
                 setPage("contact");
                 switchImage(contact, e)
+                // camera.reposition(
+                //     (-this.sizes.aspect * this.sizes.frustrum) / 3,
+                //     (this.sizes.aspect * this.sizes.frustrum) / 3,
+                //     this.sizes.frustrum / 3,
+                //     -this.sizes.frustrum / 3
+                // );
             }}
             position={[-2.29, -10.51, -6.34]}
             ><meshBasicMaterial side={THREE.DoubleSide} map={texture}/></mesh>
